@@ -2,6 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
+        *{
+            margin:0;
+            padding:0;
+        }
         body{
             background-color:#eee;
         }
@@ -26,6 +30,7 @@
             background-color: #eee;
             border-radius: 5px;
             padding: 5px;
+            width:100%;
         }
 
             .input-field:focus {
@@ -37,12 +42,13 @@
 
         .lbl {
             width: 150px;
+            font-family:roboto;
         }
 
         .header {
             width: 50%;
             position: absolute;
-            top: -30px;
+            top: -20px;
             left: 25%;
             background-color: #2e88cf;
             color: #fff;
@@ -51,8 +57,9 @@
 
         h2 {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
+            margin:10px auto;
+            font-size: 20px;
+            font-family:'Poppins';
         }
 
         .form-container {
@@ -66,7 +73,10 @@
           border-radius:10px;
           color:#fff;
           width:100px;
-          margin-left:30px;
+          font-family:'Poppins';
+
+          
+          
       }
       .btn:hover{
           background-color:#5482d0;
@@ -88,8 +98,9 @@
         }
 
             .grid th {
-                background: #2e88cf;
-                color: white;
+                background: #CFD8DC;
+                color:#444;
+                font-family:"Montserrat";
                 padding: 12px;
                 text-align: left;
             }
