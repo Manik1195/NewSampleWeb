@@ -62,8 +62,15 @@ namespace SampleWebForm
                 cmd.Parameters.AddWithValue("@Mobile", mobile);
 
                 cmd.ExecuteNonQuery();
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                 "success",
+                 "toastr.success('Registered  successfully');"+
+                 "setTimeout(function(){ window.location='Login.aspx'; }, 2000);",
+    true);
 
-                Response.Redirect("Login.aspx");
+
+               
+
             }
         }
         private void clearFields()

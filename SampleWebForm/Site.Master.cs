@@ -17,7 +17,11 @@ namespace SampleWebForm
         {
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("~/Login.aspx");
+            ScriptManager.RegisterStartupScript(this, GetType(),
+                       "toast",
+                       "toastr.success('You are logged out');" +
+                       "setTimeout(function(){window.location='Login.aspx';},2000);", true);
+
         }
 
 

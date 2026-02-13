@@ -39,15 +39,27 @@ namespace SampleWebForm
                 if (count > 0)
                 {
                     Session["username"] = username;
-                    Response.Redirect("App.aspx");
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                  "success",
+                   "toastr.success('Logged in successfully');"
+                      + "setTimeout(function(){ window.location='App.aspx'; }, 2000);",
+                     true);
+                    
+                   
+
 
                 }
                 else
                 {
                     // Login Failed
                     clearForm();
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                        "alert('Invalid username or password');", true);
+                    /*  ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                          "alert('Invalid username or password');", true); */
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                    "error",
+                     "toastr.error('Invalid username or password');",
+                      true);
+
                 }
 
             }

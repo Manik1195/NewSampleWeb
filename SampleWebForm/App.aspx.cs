@@ -21,8 +21,21 @@ namespace SampleWebForm
             if (!IsPostBack)
             {
                 LoadProducts();
-                
-              
+                if (Request.QueryString["msg"] == "added")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "toast",
+                        "toastr.success('Product added successfully');",
+                        true);
+
+                    // 🔥 Remove query string without reloading page
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "cleanUrl",
+                        "window.history.replaceState({}, document.title, window.location.pathname);",
+                        true);
+                }
+
+
             }
         }
         protected void btn_Submit(object sender, EventArgs e)
@@ -42,8 +55,14 @@ namespace SampleWebForm
                 cmd.Parameters.AddWithValue("@des", Des.Text);
                 con.Open();
                 cmd.ExecuteNonQuery();
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                 "success",
+                  "toastr.success('Product added successfully');",
+                    true);
+
             }
-            Response.Redirect(Request.RawUrl); //if we refresh ...it will not call this event again// to avoid duplicate entry
+            /* Response.Redirect(Request.RawUrl);  *///if we refresh ...it will not call this event again// to avoid duplicate entry
+            Response.Redirect("App.aspx?msg=added");
 
             clearFields();
             LoadProducts();  // after submitting the record..this function will fetch the table updated table data 
@@ -112,6 +131,11 @@ namespace SampleWebForm
 
                 con.Open();
                 cmd.ExecuteNonQuery();
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                 "success",
+                  "toastr.success('Product updated successfully');",
+                   true);
+
             }
 
             gvProducts.EditIndex = -1;
@@ -131,6 +155,11 @@ namespace SampleWebForm
                 cmd.Parameters.AddWithValue("@id", id);
                 con.Open();
                 cmd.ExecuteNonQuery();
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                 "success",
+                 "toastr.success('Product deleted successfully');",
+                    true);
+
             }
 
             LoadProducts();
